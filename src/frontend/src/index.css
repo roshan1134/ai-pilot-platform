@@ -1,0 +1,124 @@
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+    /* Cockpit palette — always dark */
+    --cp-bg: 8.2% 0.013 230;
+    --cp-bg2: 10.5% 0.019 228;
+    --cp-card: 12.8% 0.022 225;
+    --cp-border: 22% 0.027 220;
+    --cp-text: 92% 0.01 215;
+    --cp-text2: 72% 0.013 215;
+    --cp-muted: 57% 0.015 215;
+    --cp-green: 83% 0.185 155;
+    --cp-amber: 82% 0.155 78;
+    --cp-red: 60% 0.225 25;
+    --cp-cyan: 81% 0.13 182;
+    /* shadcn semantic tokens — dark cockpit overrides */
+    --background: 8.2% 0.013 230;
+    --foreground: 92% 0.01 215;
+    --card: 12.8% 0.022 225;
+    --card-foreground: 92% 0.01 215;
+    --popover: 12.8% 0.022 225;
+    --popover-foreground: 92% 0.01 215;
+    --primary: 82% 0.155 78;
+    --primary-foreground: 8.2% 0.013 230;
+    --secondary: 22% 0.027 220;
+    --secondary-foreground: 92% 0.01 215;
+    --muted: 15% 0.02 225;
+    --muted-foreground: 57% 0.015 215;
+    --accent: 22% 0.027 220;
+    --accent-foreground: 92% 0.01 215;
+    --destructive: 60% 0.225 25;
+    --destructive-foreground: 92% 0.01 215;
+    --border: 22% 0.027 220;
+    --input: 22% 0.027 220;
+    --ring: 82% 0.155 78;
+    --chart-1: 82% 0.155 78;
+    --chart-2: 83% 0.185 155;
+    --chart-3: 60% 0.225 25;
+    --chart-4: 81% 0.13 182;
+    --chart-5: 72% 0.013 215;
+    --sidebar: 12.8% 0.022 225;
+    --sidebar-foreground: 92% 0.01 215;
+    --sidebar-primary: 82% 0.155 78;
+    --sidebar-primary-foreground: 8.2% 0.013 230;
+    --sidebar-accent: 22% 0.027 220;
+    --sidebar-accent-foreground: 92% 0.01 215;
+    --sidebar-border: 22% 0.027 220;
+    --sidebar-ring: 82% 0.155 78;
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: system-ui, sans-serif;
+  }
+}
+
+/* ── Thin cockpit scrollbars ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(var(--cp-border)) oklch(var(--cp-bg));
+}
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+*::-webkit-scrollbar-track {
+  background: oklch(var(--cp-bg));
+}
+*::-webkit-scrollbar-thumb {
+  background: oklch(var(--cp-border));
+  border-radius: 2px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--cp-muted));
+}
+
+/* ── Alert pulse animation ── */
+@keyframes pulse-critical {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+.animate-pulse-critical {
+  animation: pulse-critical 1.4s ease-in-out infinite;
+}
+
+/* ── Gauge glow ── */
+.gauge-glow-green {
+  filter: drop-shadow(0 0 4px oklch(var(--cp-green)));
+}
+.gauge-glow-amber {
+  filter: drop-shadow(0 0 4px oklch(var(--cp-amber)));
+}
+.gauge-glow-red {
+  filter: drop-shadow(0 0 6px oklch(var(--cp-red)));
+}
